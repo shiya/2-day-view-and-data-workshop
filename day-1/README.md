@@ -187,3 +187,10 @@ module.exports = mongoose.model('autodesk', schema);
 ```
 
 You can set up your own local environment, or just use an online service. I used [mLab](https://mlab.com/), it has a free version for testing.
+
+##After Class
+- Write an app that gets a token from the Autodesk server every 30 minutes
+  - Save the token and all the info in a database
+  - retrieve the token every time you make a REST API call
+  - refresh the token when it expires
+  - pass the token to client-side to show you've got it

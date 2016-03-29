@@ -40,7 +40,7 @@ function initialize() {
         'document' : 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bXlidWNrZXQvc2t5c2NwcjEuM2Rz',
         'env':'AutodeskProduction',
         'getAccessToken': token,
-        'refreshToken': token,
+        'refreshToken': token
         };
     var viewerElement = document.getElementById('viewer');
     var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
@@ -61,17 +61,26 @@ viewer.explode(0.5);
 ```
 
 ##JavaScript APIs
-Two resources:
+Resources:
 [Sample code](http://developer-autodesk.github.io/LmvDbg/)
 [Documentation](https://developer.autodesk.com/api/viewerapi/)
+[Source Code](https://autodeskviewer.com/viewers/2.5/viewer3D.js)
 
 ##Event Listeners
 The viewer stream stuff in after the page loads. If you write JavaScript code to do stuff with the viewer, you'll be hit with an error and the code won't be ran.
+
+For example, getting an object tree:
 ```
 viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
-  // your code here, e.g. viewer.setLightPreset(2);
+  var objectTree = {};
+  viewer.getObjectTree(function(tree) {
+    console.log(tree);
+    objectTree = tree;
+  });
 });
 ```
 
-##Exercise:
-Create a
+##After class:
+- Create an app where users can upload their model and display it on the client side
+- Practice: highlight and zoom in on the selected element in the viewer
+  - Hint: look in the "selection set" sample code
