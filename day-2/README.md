@@ -51,7 +51,7 @@ function initialize() {
 }
 ```
 
-##在 viewer 里做操作
+##对Viewer进行操作
 打开 JavaScript console。
 
 ```
@@ -60,12 +60,12 @@ viewer.explode(0.5);
 ```
 
 ##JavaScript APIs
-Resources:
+资源:
 [示例代码](http://developer-autodesk.github.io/LmvDbg/)
 [文档](https://developer.autodesk.com/api/viewerapi/)
 [源代码](https://autodeskviewer.com/viewers/2.5/viewer3D.js)
 
-##Event Listeners
+##事件
 Viewer是在页面初始化以后才开始把图形信息加载进去，所以如果页面 onLoad 就开始操作，会出现错误。要避免这样的情况，监听`GEOMETRY_LOADED_EVENT`。
 
 例如获取 object tree：
@@ -79,7 +79,7 @@ viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
 });
 ```
 
-##After class:
+##课后:
 - 创建一款显示一个模型的页面
 - 用监听事件的方式，把用户选中的元素高亮并放大
   - 提示：参照用示例代码的“selection set”
