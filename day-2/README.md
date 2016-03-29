@@ -51,7 +51,7 @@ function initialize() {
 }
 ```
 
-##对Viewer进行操作
+##对 viewer 进行操作
 打开 JavaScript console。
 
 ```
