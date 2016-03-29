@@ -1,24 +1,24 @@
-# Introduction to View and Data API
-## Installation
-- Register as a third-party Developer with [Autodesk](https://developer.autodesk.com/)
-- Install [Node.js](https://nodejs.org/)
-- Create a MongoDB database at [mLab](https://mlab.com/)
+# View and Data API 入门
+## 安装
+- 在 [Autodesk 官网](https://developer.autodesk.com/)注册成为第三方开发者
+- 安装 [Node.js](https://nodejs.org/)
+- [mLab](https://mlab.com/) 创建一个MongoDB数据库
 
-## A walkthrough of View and Data API
+## View and Data API 简介
 [Slides](http://www.shiyaluo.com/slidedecks/webcast-2016-2-29/)
 
-## Server-side technologies
+## 后端技术
 - Node.js
- - The technology we'll use for today's workshop. It's incredibly easy to set up, deploy and run. Node.js is very suitable for apps without a great deal of logic, backward compatibility to very old systems or heavy computing, and is great for developing apps based on JSON or REST APIs since JavaScript is JSON-native(chicken and egg).
+ - 这篇教程用 Node.js 作为后端。Node 是一款非常轻量化的后端技术，十分适合用于做REST请求，在业务逻辑不繁杂的应用场景非常不错。
 
-## REpresentation State Transfer (REST) APIs
-- REST APIs are a protocol that specifies how to send and receive HTTP requests and responses
-- Most Web services exist in the form of REST APIs
-- Exists in 4 main types, there are more, but these cover most scenarios
-  - GET: Read
-  - POST: Create
-  - PUT: Create with path or update existing resource
-  - DELETE: Delete
+## REpresentation State Transfer (REST) API
+- REST 是定义如何发送和接受 HTTP 请求的规范
+- 大部分 Web 服务都以 REST API 的形式开放出来
+- 以下四种是最常见的：
+  - GET: 读取
+  - POST: 创建
+  - PUT: 指定路径创建
+  - DELETE: 删除
 
 ## MEAN vs. \*AMP
 - MEAN
@@ -30,10 +30,10 @@
 - \*AMP
   - Linux(LAMP)/Windows(WAMP) server
   - Apache HTTP Server
-  - MySQL Relationsal Database
+  - MySQL
   - PHP/Perl/Python
 
-## Create a quick server with Node
+## 用 Node 快速搭一款服务器
 
 ```
 // server.js
@@ -51,22 +51,22 @@ server.listen(3000);
 ```
 
 ## MVC with Node
-The Model View Controller (MVC) pattern is commonly used in many server-side technologies. It separates database schema (model), interface (view), and routing logic (controller) from each other, letting engineers working on different aspects of the app.
+MVC 是一款在后端技术里非常常见的框架，把数据库逻辑（Model）、界面（Interface）和业务逻辑（controller）分开出来。
 
 ## npm
-Node Package Manager is a tool that let you download packages to work with Node.js.
+Node Package Manager 是一款用于下载 Node.js 包的工具。
 
-Common commands:
+常见命令：
 -  `npm init`
-  - Creates a package.json file that includes all configuration information with your Node app.
+  - 创建 `package.json`，里面定义 app 里的各种信息，如依赖、作者、git 路径等等。
 -  `npm install`
-  - installs the dependencies in your app.
-  - `-g`: global install
-  - `--save`: save the package so it appears in your package.json
-  - `--save-dev`: save the package as a dev dependency
+  - 安装依赖
+  - `-g`: 全局安装
+  - `--save`: 把依赖的包信息存进 package.json
+  - `--save-dev`: 存进开发依赖里
 
 ## Express.js
-Express is a Node.js server framework that makes server routing and handling request and responses easy.
+Express 是 Node.js 一款常用框架，方便接受和发送请求以及处理各种业务逻辑。
 
 Hello World with express
 ```
@@ -80,8 +80,8 @@ app.get('/', function (req, res) {
 app.listen(3000);
 ```
 
-## Templating with `ejs`
-[Embedded JavaScript Template](https://www.npmjs.com/package/ejs)(ejs) is a templating engine that renders pages and makes it easy to pass server-side data to the views. By default, it reads the `.ejs` files from the `/views` folder.
+## `ejs`模板引擎
+[Embedded JavaScript Template](https://www.npmjs.com/package/ejs)(ejs) 是一款方便把后端数据传到前端的模板工具。在默认情况下，它从根目录下的`/views`读取文件。
 
 Features:
 - Control flow with <% %>
@@ -125,10 +125,9 @@ app.listen(port);
 ```
 
 ## `request` module
-Request is a module that makes it very easy to make http calls. I've done without, but it's much easier with.
+Request是一个方便发送 HTTP（REST API） 请求的模块。
 
-
-Making a POST request to Autodesk authentication server with request:
+用 request 给 Autodesk authentication 服务器发送请求获取 token：
 ```
 var autodeskAuth = function (clientId, clientSecret, callback) {
 	var options = {
@@ -152,9 +151,9 @@ var autodeskAuth = function (clientId, clientSecret, callback) {
 ```
 
 
-## Database with MongoDB
-You should save some of the data after you call the APIs in a database. MongoDB is a popular NoSQL database. It's very easy to use, very easy to set up.
-It stores data in JSON format that looks something like:
+## MongoDB 数据库
+有些 API 请求所返回的数据应该被存入数据库。在这篇教程里用 MongoDB，它是一个 NoSQL 数据库。
+NoSQL 数据库是用 JSON 形式存入的：
 ```
 {
   "_id": {
@@ -166,9 +165,8 @@ It stores data in JSON format that looks something like:
 }
 ```
 
-It's easiest to use the mongoose module to define schema for MongoDB.
+用 mongoose 模块定义 MongoDB schema 最方便：
 
-To configure MongoDB in Node with mongoose, do this:
 ```
 var mongoose = require('mongoose');
 mongoose.connect({
@@ -176,7 +174,7 @@ mongoose.connect({
 });
 ```
 
-The schema file should look something like:
+schema 文件：
 ```
 //schema.js (or name this js file similar to your database name, like autodesk.js)
 var mongoose = require('mongoose');
@@ -186,11 +184,11 @@ var schema = mongoose.Schema({
 module.exports = mongoose.model('autodesk', schema);
 ```
 
-You can set up your own local environment, or just use an online service. I used [mLab](https://mlab.com/), it has a free version for testing.
+用本地的 MongoDB 或者线上服务都可以，我用了 [mLab](https://mlab.com/)，测试版是免费的。
 
-##After Class
-- Write an app that gets a token from the Autodesk server every 30 minutes
-  - Save the token and all the info in a database
-  - retrieve the token every time you make a REST API call
-  - refresh the token when it expires
-  - pass the token to client-side to show you've got it
+##课后：
+- 写一个从 Autodesk 数据库获取 token 的 app
+  - 把 token 存入数据库
+  - 每次请求 REST API 时从数据库获取 token
+  - 如果过期，重新获取 token
+  - 拿到 token 后用 ejs 传到前端

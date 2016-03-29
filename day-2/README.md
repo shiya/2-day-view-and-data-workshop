@@ -1,10 +1,9 @@
-##Client-side technologies
+##前端技术
 
-We're working with the "view" today.
+今天讲前端。
 
-##Starter HTML Template
-Either you're working with EJS or HTML, the basic syntax is the same.
-We're working with WebGL in today's session, so there is no backward compatibility to older Internet Explorer versions, or older Safari versions.
+##HTML 模板
+ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不能向很老的浏览器兼容。
 
 ```
 <!-- index.ejs -->
@@ -33,7 +32,7 @@ We're working with WebGL in today's session, so there is no backward compatibili
 </html>
 ```
 
-##Initialize the viewer with JavaScript (front end)
+##用 JavaScript 初始化 viewer
 ```
 function initialize() {
     var options = {
@@ -52,8 +51,8 @@ function initialize() {
 }
 ```
 
-##To Manipulate elements in the Viewer
-Open the JavaScript console.
+##在 viewer 里做操作
+打开 JavaScript console。
 
 ```
 viewer.setLightPreset(5);
@@ -62,14 +61,14 @@ viewer.explode(0.5);
 
 ##JavaScript APIs
 Resources:
-[Sample code](http://developer-autodesk.github.io/LmvDbg/)
-[Documentation](https://developer.autodesk.com/api/viewerapi/)
-[Source Code](https://autodeskviewer.com/viewers/2.5/viewer3D.js)
+[示例代码](http://developer-autodesk.github.io/LmvDbg/)
+[文档](https://developer.autodesk.com/api/viewerapi/)
+[源代码](https://autodeskviewer.com/viewers/2.5/viewer3D.js)
 
 ##Event Listeners
-The viewer stream stuff in after the page loads. If you write JavaScript code to do stuff with the viewer, you'll be hit with an error and the code won't be ran.
+Viewer是在页面初始化以后才开始把图形信息加载进去，所以如果页面 onLoad 就开始操作，会出现错误。要避免这样的情况，监听`GEOMETRY_LOADED_EVENT`。
 
-For example, getting an object tree:
+例如获取 object tree：
 ```
 viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
   var objectTree = {};
@@ -81,6 +80,6 @@ viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
 ```
 
 ##After class:
-- Create an app where users can upload their model and display it on the client side
-- Practice: highlight and zoom in on the selected element in the viewer
-  - Hint: look in the "selection set" sample code
+- 创建一款显示一个模型的页面
+- 用监听事件的方式，把用户选中的元素高亮并放大
+  - 提示：参照用示例代码的“selection set”

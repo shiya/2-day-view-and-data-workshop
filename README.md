@@ -1,18 +1,21 @@
 # Introduction to View and Data API
 
 ## Day 1
-- Demos
-- Introduction to View and Data API
-- Server-side technologies
+- Demo
+- View and Data API 入门
+- 后端技术
 - Node.js
-- REST API
+- REpresentation State Transfer (REST) API
 - MVC with Node
+- 用 Node 快速搭一款服务器
 - Express.js
-- Templating with EJS
-- Database with MongoDB
+- `ejs`模板引擎
+- MongoDB 数据库
 
 ## Day 2
-- Client-side technologies
-- Starter HTML + JS Template
+- 前端技术
+- HTML 模板
+- 用 JavaScript 初始化 viewer
+- 在 viewer 里做操作
 - JavaScript API
-- Event Listeners
+- 监听事件
