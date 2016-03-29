@@ -22,10 +22,10 @@
 
 ## MEAN vs. \*AMP
 - MEAN
- - MongoDB
- - Express.js
- - Angular.js
- - Node.js
+  - MongoDB
+  - Express.js
+  - Angular.js
+  - Node.js
 
 - \*AMP
   - Linux(LAMP)/Windows(WAMP) server
@@ -186,7 +186,7 @@ module.exports = mongoose.model('autodesk', schema);
 
 用本地的 MongoDB 或者线上服务都可以，我用了 [mLab](https://mlab.com/)，测试版是免费的。
 
-##课后：
+## 课后：
 - 写一个从 Autodesk 数据库获取 token 的 app
   - 把 token 存入数据库
   - 每次请求 REST API 时从数据库获取 token
