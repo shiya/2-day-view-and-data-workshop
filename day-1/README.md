@@ -17,7 +17,7 @@
 - 以下四种是最常见的：
   - GET: 读取
   - POST: 创建
-  - PUT: 指定路径创建
+  - PUT: 修改
   - DELETE: 删除
 
 ## MEAN vs. \*AMP
