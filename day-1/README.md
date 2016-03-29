@@ -12,7 +12,7 @@
  - The technology we'll use for today's workshop. It's incredibly easy to set up, deploy and run. Node.js is very suitable for apps without a great deal of logic, backward compatibility to very old systems or heavy computing, and is great for developing apps based on JSON or REST APIs since JavaScript is JSON-native(chicken and egg).
 
 ## REpresentation State Transfer (REST) APIs
-- REST APIs are a protocol that specifies how to send and receive HTTP requests and responses
+- REST is a protocol that specifies how to send and receive HTTP requests and responses
 - Most Web services exist in the form of REST APIs
 - Exists in 4 main types, there are more, but these cover most scenarios
   - GET: Read
@@ -30,7 +30,7 @@
 - \*AMP
   - Linux(LAMP)/Windows(WAMP) server
   - Apache HTTP Server
-  - MySQL Relationsal Database
+  - MySQL Relational Database
   - PHP/Perl/Python
 
 ## Create a quick server with Node
