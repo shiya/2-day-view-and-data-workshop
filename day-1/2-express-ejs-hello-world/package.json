@@ -1,0 +1,15 @@
+{
+  "name": "view-and-data-node-service",
+  "version": "0.0.1",
+  "description": "Solution for the exercises for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shiya Luo",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  }
+}
