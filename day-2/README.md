@@ -18,10 +18,9 @@ ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不
   <!-- viewer files to include -->
   <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css"/>
   <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
-
 </head>
 
-<body>
+<body onload="initialize()">
 
 <div id="viewer"></div>
 
@@ -31,21 +30,38 @@ ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不
 
 ## 用 JavaScript 初始化 viewer
 ```
-function initialize() {
+  function getToken() {
+    return "ZDPw2C19jKMUS7DL54JGnwYnqvqW";
+  }
+
+  function loadDocument(viewer, documentId) {
+    // Find the first 3d geometry and load that.
+    Autodesk.Viewing.Document.load(documentId, function(doc) {
+      var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(
+        doc.getRootItem(),
+        { 'type' : 'geometry', 'role' : '3d' },
+        true);
+      if (geometryItems.length > 0) {
+        viewer.load(doc.getViewablePath(geometryItems[0]));
+      }
+    },
+    function(errorMsg) { // onErrorCallback
+      alert("Load Error: " + errorMsg);
+    });
+  }
+  function initialize() {
     var options = {
-        'document' : 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bXlidWNrZXQvc2t5c2NwcjEuM2Rz',
-        'env':'AutodeskProduction',
-        'getAccessToken': token,
-        'refreshToken': token
-        };
+      'document' : 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6c2hpeWFzLWJ1Y2tldC0xNC9yZXZpdC5ydnQ=',
+      'env':'AutodeskProduction',
+      'getAccessToken': getToken,
+      'refreshToken': getToken };
     var viewerElement = document.getElementById('viewer');
     var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
-
     Autodesk.Viewing.Initializer(options,function() {
-        viewer.initialize();
-        viewer.load(options.document);
+      viewer.initialize();
+      loadDocument(viewer, options.document);
     });
-}
+  }
 ```
 
 ## 对 viewer 进行操作
