@@ -1,0 +1,67 @@
+<!-- index.ejs -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="author" content="Shiya Luo">
+
+  <!-- viewer files to include -->
+  <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css"/>
+  <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+
+<script type="text/javascript">
+  function getToken() {
+    var tokenResponse = <%- message %>;
+    return tokenResponse['access_token'];
+  }
+
+  function loadDocument(viewer, documentId) {
+    // Find the first 3d geometry and load that.
+    Autodesk.Viewing.Document.load(documentId, function(doc) {
+      var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(
+        doc.getRootItem(),
+        { 'type' : 'geometry', 'role' : '3d' },
+        true);
+      if (geometryItems.length > 0) {
+        viewer.load(doc.getViewablePath(geometryItems[0]));
+      }
+    },
+    function(errorMsg) { // onErrorCallback
+      alert("Load Error: " + errorMsg);
+    });
+  }
+  function initialize() {
+    var options = {
+      'document' : 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6c2hpeWFzLWJ1Y2tldC0xNC9yZXZpdC5ydnQ=',
+      'env':'AutodeskProduction',
+      'getAccessToken': getToken,
+      'refreshToken': getToken };
+    var viewerElement = document.getElementById('viewer');
+    viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerElement, {});
+    Autodesk.Viewing.Initializer(options,function() {
+      viewer.initialize();
+      loadDocument(viewer, options.document);
+    });
+
+    viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
+      viewer.explode(0.5);
+
+      var objectTree = {};
+
+      viewer.getObjectTree(function (tree) {
+        console.log(tree);
+        objectTree = tree;
+      });
+    });
+  }
+</script>
+</head>
+
+<body onload="initialize()">
+
+<div id="viewer"></div>
+
+</body>
+</html>

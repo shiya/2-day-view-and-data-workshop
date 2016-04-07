@@ -1,14 +1,17 @@
 {
-  "name": "express-hello-world",
+  "name": "hello-world",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Shiya Luo",
+  "author": "Shiya",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.4"
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.11",
+    "request": "^2.70.0"
   }
 }
