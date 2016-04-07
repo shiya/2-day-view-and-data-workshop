@@ -5,7 +5,7 @@
 ## HTML 模板
 ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不能向很老的浏览器兼容。
 
-```
+```html
 <!-- index.ejs -->
 <!doctype html>
 <html lang="en">
@@ -29,7 +29,7 @@ ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不
 ```
 
 ## 用 JavaScript 初始化 viewer
-```
+```javascript
   function getToken() {
     return "ZDPw2C19jKMUS7DL54JGnwYnqvqW";
   }
