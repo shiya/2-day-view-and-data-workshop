@@ -25,7 +25,7 @@ ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不
 
 <body>
 
-<div id="body"></div>
+<div id="viewer"></div>
 
 <script src="js/scripts.js"></script>
 </body>
