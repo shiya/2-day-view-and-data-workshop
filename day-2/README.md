@@ -12,22 +12,19 @@ ejs 和 HTML 的语法是一样的。今天要开发一款 WebGL app，所以不
 <head>
   <meta charset="utf-8">
 
-  <title>Login</title>
+  <title></title>
   <meta name="author" content="Shiya Luo">
 
   <!-- viewer files to include -->
   <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css"/>
   <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
 
-
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
 <div id="viewer"></div>
 
-<script src="js/scripts.js"></script>
 </body>
 </html>
 ```
